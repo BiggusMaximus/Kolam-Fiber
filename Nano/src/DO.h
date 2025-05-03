@@ -1,0 +1,37 @@
+#include <Arduino.h>
+#define DO_PIN A6
+
+
+float m_DO = 1;
+float b_DO = 0;
+
+void DOInitialization(){
+  pinMode(DO_PIN, INPUT);
+}
+
+float readAnalogDO(){
+  return analogRead(DO_PIN);
+}
+
+float readAverageAnalogDO(){
+  float temp = 0;
+  for (size_t i = 0; i < N_SAMPLES; i++)
+  {
+    temp += analogRead(DO_PIN);
+  }
+  return temp/N_SAMPLES;
+}
+
+float readCalibratedDO(){
+  return m_DO * analogRead(DO_PIN) + b_DO;
+}
+
+float readAverageCalibratedDO(){
+  float temp = 0;
+  for (size_t i = 0; i < N_SAMPLES; i++)
+  {
+    temp += readCalibratedDO();
+  }
+  return temp/N_SAMPLES;
+
+}
