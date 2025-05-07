@@ -6,6 +6,9 @@
 
 String data = "";
 
+unsigned long lastPublishTime = 0;  
+const long publishInterval = 1000;
+
 void setup() {
   Serial.begin(115200);
   WiFiInitialization();
@@ -15,7 +18,17 @@ void setup() {
 
 void loop() {
   String data = readBidirectionalMessage();
-  parseData(data);
+  if (data.length() > 0) {
+    parseData(data);
+  }
 
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastPublishTime >= publishInterval) {
+    MQTTsend(pH, DO, temp);
+
+    lastPublishTime = currentMillis;
+  }
+
+  client.loop();
 }
 

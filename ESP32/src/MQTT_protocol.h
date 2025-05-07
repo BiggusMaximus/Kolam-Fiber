@@ -5,9 +5,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 const char *mqtt_broker = "broker.emqx.io";
-const char *topic = "emqx/esp32";
-const char *mqtt_username = "emqx";
-const char *mqtt_password = "public";
+const char *topic = "mqtt";
 const int mqtt_port = 1883;
 
 
@@ -29,7 +27,7 @@ void MQTTInitialization(){
         String client_id = "esp32-client-";
         client_id += String(WiFi.macAddress());
         Serial.printf("The client %s connects to the public MQTT broker\n", client_id.c_str());
-        if (client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
+        if (client.connect(client_id.c_str())) {
             Serial.println("Public EMQX MQTT broker connected");
         } else {
             Serial.print("failed with state ");
