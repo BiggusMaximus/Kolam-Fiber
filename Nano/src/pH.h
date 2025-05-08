@@ -1,8 +1,8 @@
 #include <Arduino.h>
 #define PH_PIN A0
 
-float m_pH = 1;
-float b_pH = 0;
+float m_pH = -0.0335;
+float b_pH = 34.998;
 
 void PHInitialization(){
   pinMode(PH_PIN, INPUT);

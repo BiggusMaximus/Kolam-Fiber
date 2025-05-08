@@ -15,14 +15,16 @@ void TemperatureSensorInitialization(){
 }
 
 float readTemperature(){
-    return sensors.requestTemperatures(); 
+    sensors.requestTemperatures();
+    return sensors.getTempCByIndex(0); 
 }
 
 float readMeanTemperature(){
     float temp = 0;
     for (size_t i = 0; i < N_SAMPLES; i++)
     {
-        temp += sensors.requestTemperatures(); 
+        sensors.requestTemperatures();
+        temp +=  sensors.getTempCByIndex(0);
     }
     
     return temp/100;
