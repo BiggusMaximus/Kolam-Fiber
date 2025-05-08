@@ -32,7 +32,7 @@ void loop() {
   // delay(1000);
   // Serial.println("turn off");
   // TurnOffRelay();
-  // delay(1000);
+  // delay(5000);
   // showDisplay(randomFloat(), randomFloat(), randomFloat());
 
 }
